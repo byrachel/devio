@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.space {
+    margin: 50px 0;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.light {
+    font-weight: 300;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  font-size: 1.8em;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+h2 {
+    font-size: 1.8em;
+    line-height: 2.8em;
+    letter-spacing: 1px;
+  }
+
+h3 {
+    font-size: 1.2em;
+    line-height: 2em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+
+.big-title {
+    font-size: 2.5em;
+    line-height: 1.8em;
+}
+
+.big-title a {
+    text-decoration: none;
+    color: black;
+}
+
+.big-title a:hover {
+    text-decoration: none;
+    background-color: #F8F0ED;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6em;
+}
+
+.small {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: grey;
+    letter-spacing: 1px;
+}
+
+.lien {
+    font-size: 1em;
+}
+
+.lien a {
+    color: grey;
+}
+
+.lien a:hover {
+    text-decoration: none;
+    background-color: #F8F0ED;
+}
+
+.divider {
+    border-bottom: solid 5px #F8F0ED;
+    max-width: 250px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.card-header {
+    background-color: #F8F0ED !important;
+    border: none;
+}
+
+.card {
+    border-color: #F8F0ED !important;
+}

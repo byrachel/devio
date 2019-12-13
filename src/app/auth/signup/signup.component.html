@@ -1,0 +1,56 @@
+<img src="/assets/hero.jpg" class="img-fluid" alt="Responsive image">
+<div class="space"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        <h2 class="bold uppercase">Créer un compte</h2>
+        <div class="divider"></div>
+        <br>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="email">Adresse mail:</label>
+                <input type="text"
+                        id="email"
+                        class="form-control rounded-0"
+                        formControlName="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe:</label>
+                <input type="password"
+                        id="password"
+                        class="form-control rounded-0"
+                        formControlName="password">
+            </div>
+            <button class="btn btn-dark btn-block rounded-0"
+                    type="submit"
+                    [disabled]="signUpForm.invalid">Je m'inscris</button>
+            </form>
+            <p class="text-danger">{{ errorMessage }}</p>
+        </div>
+        <div class="col-md-6">
+            <h2 class="bold uppercase">Se connecter</h2>
+            <div class="divider"></div>
+            <br>
+            <form [formGroup]="signInForm" (ngSubmit)="onSubmitIn()">
+                <div class="form-group">
+                    <label for="mail">Adresse mail:</label>
+                    <input type="text"
+                            id="mail"
+                            class="form-control rounded-0"
+                            formControlName="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Mot de passe:</label>
+                    <input type="password"
+                            id="pwd"
+                            class="form-control rounded-0"
+                            formControlName="password">
+                </div>
+                <button class="btn btn-dark btn-block rounded-0"
+                        type="submit"
+                        [disabled]="signInForm.invalid">Je me connecte</button>
+                </form>
+                <p class="text-danger">{{ errorMessageIn }}</p>
+            </div>
+    </div>
+</div>

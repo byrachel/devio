@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+    <div class="col-sm-10 mx-auto">
+        <h2 class="text-center">Ajouter un nouveau service</h2>
+        <p class="divider mx-auto"></p>
+        <form [formGroup]="postForm" (ngSubmit)="onSavePost()">
+        <div class="form-group row">
+
+            <label for="title" class="col-sm-2 col-form-label">Titre :</label>
+            <div class="col-sm-10 mb-3">
+            <input type="text" id="title" class="form-control" formControlName="title">
+            </div>
+
+            <label for="category" class="col-sm-2 col-form-label">Catégorie :</label>
+            <div class="col-sm-10 mb-3">
+            <select id="category" class="form-control" formControlName="category" [ngModel]="defaultCategory">
+            <option value="Formation">Formation</option>
+            <option value="Frameworks">Frameworks</option>
+            <option value="Librairie">Librairie</option>
+            <option value="Software & app">Applications et logiciels</option>
+            <option value="Business places">Business places</option>
+            <option value="Autre">Autre</option>
+            </select>
+            </div>
+
+            <label for="content" class="col-sm-2 col-form-label">Description :</label>
+            <div class="col-sm-10 mb-3">
+            <textarea id="content" class="form-control" formControlName="content"></textarea>
+            </div>
+
+            <label for="link" class="col-sm-2 col-form-label">Lien :</label>
+            <div class="col-sm-10 mb-3">
+            <input type="url" id="link" class="form-control" formControlName="link">
+            </div>
+
+            <button class="btn btn-dark mx-auto" [disabled]="postForm.invalid" type="submit">Enregistrer</button>
+
+        </div>
+        </form>
+    </div>
+</div>

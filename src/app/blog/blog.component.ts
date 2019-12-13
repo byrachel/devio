@@ -1,0 +1,42 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Blog } from '../models/Blog.model';
+import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
+import { PostsService } from '../services/posts.service';
+
+@Component({
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.css']
+})
+export class BlogComponent implements OnInit, OnDestroy {
+
+  posts: Blog[];
+  postsSubscription: Subscription;
+
+  constructor(private router:Router,
+              private postsService:PostsService) { }
+
+  // On initie une connexion au tableau à l'initialisation du component
+  ngOnInit() {
+    this.postsSubscription = this.postsService.postSubject.subscribe(
+      (posts:Blog[]) => {
+        this.posts = posts;
+      });
+
+    this.postsService.emitPosts();
+  }
+
+  onNewPost() {
+    this.router.navigate(['/blog', 'new']);
+  }
+
+  onViewPost(id:number) {
+    this.router.navigate(['/blog', 'view', id]);
+  }
+
+  ngOnDestroy() {
+    this.postsSubscription.unsubscribe();
+  }
+
+}
