@@ -10,20 +10,18 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { BlogComponent } from './blog/blog.component';
-import { SinglePostComponent } from './blog/single-post/single-post.component';
 import { PostFormComponent } from './blog/post-form/post-form.component';
 
 import { AuthService } from './services/auth.service';
 import { PostsService } from './services/posts.service';
 import { AuthGuardService } from './services/auth-guard.service';
-
-import { Blog } from '../app/models/Blog.model';
+import { CategorylistComponent } from './blog/categorylist/categorylist.component';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/new', canActivate: [AuthGuardService], component: PostFormComponent },
-  { path: 'blog/view/:id', canActivate: [AuthGuardService], component: SinglePostComponent },
+  { path: 'blog/:category', component: CategorylistComponent },
   { path: '', component: HomeComponent }
 ]
 
@@ -33,9 +31,9 @@ const appRoutes: Routes = [
     AppComponent,
     SignupComponent,
     BlogComponent,
-    SinglePostComponent,
     PostFormComponent,
-    HomeComponent
+    HomeComponent,
+    CategorylistComponent
   ],
   imports: [
     BrowserModule,

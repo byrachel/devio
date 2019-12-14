@@ -3,7 +3,7 @@ import { Blog } from '../models/Blog.model';
 import { Subject } from 'rxjs/Subject';
 import * as firebase from 'firebase';
 import Datasnapshot = firebase.database.DataSnapshot;
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class PostsService {
   // Je récupère un subject afin de créer le tableau
   postSubject = new Subject<Blog[]>();
 
-  constructor() {
+  constructor(private route:Router) {
     this.getPosts();
   }
 
@@ -35,24 +35,18 @@ export class PostsService {
     });
   }
 
-  getSinglePost(id: number) {
-    return new Promise(
-      (resolve,reject) => {
-        firebase.database().ref('/blog' + id).once('value').then(
-          (data: Datasnapshot) => {
-            resolve(data.val());
-          },
-          (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
-  }
+    getPostsByCategory(category:string) {
+      firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
+        this.posts = data.val() ? data.val() : [];
+        console.log(this.posts)
+        this.emitPosts();
+      });
+    }
 
   createNewPost(newPost:Blog) {
     this.posts.push(newPost);
     this.savePosts();
     this.emitPosts();
   }
+  
 }

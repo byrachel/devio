@@ -71,9 +71,11 @@ p {
 
 .lien a {
     color: grey;
+    padding: 10px;
 }
 
 .lien a:hover {
+    color: black;
     text-decoration: none;
     background-color: #F8F0ED;
 }

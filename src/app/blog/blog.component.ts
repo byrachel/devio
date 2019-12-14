@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Blog } from '../models/Blog.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
@@ -23,7 +23,6 @@ export class BlogComponent implements OnInit, OnDestroy {
       (posts:Blog[]) => {
         this.posts = posts;
       });
-
     this.postsService.emitPosts();
   }
 
@@ -31,8 +30,8 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.router.navigate(['/blog', 'new']);
   }
 
-  onViewPost(id:number) {
-    this.router.navigate(['/blog', 'view', id]);
+  categoryList(category:string) {
+    this.router.navigate(['/blog', category]);
   }
 
   ngOnDestroy() {
