@@ -18,6 +18,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { SinglePostComponent } from './blog/single-post/single-post.component';
 import { SidebarComponent } from './blog/sidebar/sidebar.component';
 import { CategoryComponent } from './blog/category/category.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     HomeComponent,
     SinglePostComponent,
     SidebarComponent,
-    CategoryComponent
+    CategoryComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
