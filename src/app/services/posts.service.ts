@@ -35,13 +35,29 @@ export class PostsService {
     });
   }
 
-    getPostsByCategory(category:string) {
-      firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
-        this.posts = data.val() ? data.val() : [];
-        console.log(this.posts)
+  getSinglePost(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/blog/' + id).once('value').then(
+          (data: Datasnapshot) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
 
-      });
-    }
+
+
+  getPostsByCategory(category:string) {
+    firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
+      this.posts = data.val() ? data.val() : [];
+      console.log(this.posts)
+
+    });
+  }
 
   createNewPost(newPost:Blog) {
     this.posts.push(newPost);

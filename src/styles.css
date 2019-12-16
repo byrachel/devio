@@ -36,7 +36,14 @@ h3 {
     text-transform: uppercase;
     font-weight: 700;
 }
+.title {
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
 
+.title:hover {
+    transform: scale(1.1);
+}
 
 .big-title {
     font-size: 2.5em;

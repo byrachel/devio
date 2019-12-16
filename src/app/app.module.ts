@@ -15,14 +15,18 @@ import { PostFormComponent } from './blog/post-form/post-form.component';
 import { AuthService } from './services/auth.service';
 import { PostsService } from './services/posts.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { CategorylistComponent } from './blog/categorylist/categorylist.component';
+import { SinglePostComponent } from './blog/single-post/single-post.component';
+import { SidebarComponent } from './blog/sidebar/sidebar.component';
+import { CategoryComponent } from './blog/category/category.component';
 
 const appRoutes: Routes = [
-  { path: 'auth/signup', component: SignupComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/new', canActivate: [AuthGuardService], component: PostFormComponent },
-  { path: 'blog/:category', component: CategorylistComponent },
-  { path: '', component: HomeComponent }
+  { path: 'blog/view/:id', component: SinglePostComponent },
+  { path: 'blog/:category', component: CategoryComponent },
+  { path: '', component: HomeComponent },
+  { path: '**', redirectTo: '' }
 ]
 
 
@@ -33,7 +37,9 @@ const appRoutes: Routes = [
     BlogComponent,
     PostFormComponent,
     HomeComponent,
-    CategorylistComponent
+    SinglePostComponent,
+    SidebarComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   posts: Blog[];
   postsSubscription: Subscription;
+  isAuth: boolean;
 
   constructor(private router:Router,
               private postsService:PostsService) { }
@@ -26,8 +27,8 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.postsService.emitPosts();
   }
 
-  onNewPost() {
-    this.router.navigate(['/blog', 'new']);
+  onClickPost(id: number) {
+    this.router.navigate(['/blog', 'view', id]);
   }
 
   categoryList(category:string) {

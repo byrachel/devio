@@ -5,7 +5,7 @@
   <h1 class="logo" routerLink="/"><span class="bold">dev.</span>(io)</h1> 
   <div class="spacer"></div>
   <a routerLink="blog" routerLinkActive="active" class="toolbar">Annuaire</a>
-  <a routerLink="auth/signup" routerLinkActive="active" class="toolbar" *ngIf="!isAuth">Se connecter </a>
+  <a routerLink="signup" routerLinkActive="active" class="toolbar" *ngIf="!isAuth">Se connecter </a>
   <a (click)="onSignOut()" *ngIf="isAuth" style="cursor:pointer">Logout</a>
 </div>
 

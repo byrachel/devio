@@ -5,15 +5,21 @@ import { PostsService } from 'src/app/services/posts.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-categorylist',
-  templateUrl: './categorylist.component.html',
-  styleUrls: ['./categorylist.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
+export class CategoryComponent implements OnInit {
 
-export class CategorylistComponent implements OnInit, OnDestroy {
   posts: Blog[];
   postsSubscription: Subscription;
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {}
+
+  constructor(private route: ActivatedRoute,
+              private postsService: PostsService,
+              private router: Router) { }
+
+
+
   ngOnInit() {
     this.postsSubscription = this.postsService.postSubject.subscribe(
       (posts:Blog[]) => {
@@ -24,13 +30,9 @@ export class CategorylistComponent implements OnInit, OnDestroy {
 
   }
 
+
   ngOnDestroy() {
     this.postsSubscription.unsubscribe();
   }
 
 }
-
-
-
-
-
