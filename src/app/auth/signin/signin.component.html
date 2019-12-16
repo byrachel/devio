@@ -1,24 +1,30 @@
-<div class="white-box text-center">
-    <h2 class="mx-auto uppercase">Se connecter</h2>
-    <form [formGroup]="signInForm" (ngSubmit)="onSubmitIn()">
-        <div class="form-group">
-            <input type="text"
-                    placeholder="e-Mail"
-                    class="form-control rounded-0"
-                    formControlName="email">
-        </div>
-        <div class="form-group">
-            <input type="password"
-                    placeholder="Mot de passe"
-                    class="form-control rounded-0"
-                    formControlName="password">
-        </div>
-        <button class="btn btn-dark btn-block rounded-0 uppercase"
-                type="submit"
-                [disabled]="signInForm.invalid">Valider</button>
-        </form>
-        <p class="text-danger">{{ errorMessageIn }}</p>
-        <a routerLink="signup" routerLinkActive="active" class="small">Créer un compte</a>
-</div>
 
+<p class="text-danger">{{ errorMessageIn }}</p>
+
+<div class="connect">
+<form [formGroup]="signInForm" (ngSubmit)="onSubmitIn()">
+    <div class="form-row">
+      <div class="col">
+          <p class="uppercase bold">Se connecter :</p>
+      </div>
+      <div class="col">
+        <input type="text"
+        placeholder="e-Mail"
+        class="form-control rounded-0"
+        formControlName="email">
+      </div>
+      <div class="col">
+        <input type="password"
+        placeholder="Mot de passe"
+        class="form-control rounded-0"
+        formControlName="password">
+      </div>
+      <div class="col">
+        <button class="btn btn-dark btn-block rounded-0 uppercase"
+        type="submit"
+        [disabled]="signInForm.invalid">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>
 
