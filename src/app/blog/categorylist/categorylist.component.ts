@@ -21,7 +21,7 @@ export class CategorylistComponent implements OnInit, OnDestroy {
     });
     const category = this.route.snapshot.params['category'];
     this.postsService.getPostsByCategory(category);
-    this.postsService.emitPosts();
+
   }
 
   ngOnDestroy() {

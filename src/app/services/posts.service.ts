@@ -39,7 +39,7 @@ export class PostsService {
       firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
         this.posts = data.val() ? data.val() : [];
         console.log(this.posts)
-        this.emitPosts();
+
       });
     }
 
