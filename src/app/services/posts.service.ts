@@ -5,21 +5,20 @@ import * as firebase from 'firebase';
 import Datasnapshot = firebase.database.DataSnapshot;
 import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class PostsService {
   // Je crée mon tableau d'articles
   posts: Blog[] = [];
-  // Je récupère un subject afin de créer le tableau
+  // Je récupère un post afin de créer le tableau
   postSubject = new Subject<Blog[]>();
-
-  constructor(private route:Router) {
-    this.getPosts();
-  }
 
   emitPosts() {
     this.postSubject.next(this.posts);
+  }
+
+  constructor(private route:Router) {
+    this.getPosts();
   }
 
   savePosts() {
@@ -48,8 +47,6 @@ export class PostsService {
       }
     );
   }
-
-
 
   getPostsByCategory(category:string) {
     firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
