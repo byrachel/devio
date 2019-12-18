@@ -6,6 +6,7 @@
         <h2 class="bold uppercase">Créer un compte</h2>
         <div class="divider"></div>
         <br>
+        <p>Vous souhaitez ajouter un service dans l'annuaire ?</p>
         <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="email">Adresse mail:</label>
@@ -31,6 +32,7 @@
             <h2 class="bold uppercase">Se connecter</h2>
             <div class="divider"></div>
             <br>
+            <p>Vous avez déjà un compte, connectez-vous :</p>
             <form [formGroup]="signInForm" (ngSubmit)="onSubmitIn()">
                 <div class="form-group">
                     <label for="mail">Adresse mail:</label>
