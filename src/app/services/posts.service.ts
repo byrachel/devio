@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import * as firebase from 'firebase';
 import Datasnapshot = firebase.database.DataSnapshot;
 import { Router } from '@angular/router';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -36,12 +37,15 @@ export class PostsService {
   }
 
     getPostsByCategory(category:string) {
-      firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
-        this.posts = data.val() ? data.val() : [];
-        console.log(this.posts)
-        this.emitPosts();
+      firebase.database().ref('/blog').orderByChild('category').equalTo(category).once("value").then(Datasnapshot => {
+        
+        Datasnapshot.forEach(child => {
+          const post = child.val();
+          post.id = child.key;
+        });
       });
-    }
+      }
+
 
   createNewPost(newPost:Blog) {
     this.posts.push(newPost);

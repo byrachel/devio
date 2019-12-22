@@ -13,15 +13,22 @@ import { Subscription } from 'rxjs/Subscription';
 export class CategorylistComponent implements OnInit, OnDestroy {
   posts: Blog[];
   postsSubscription: Subscription;
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {
+  }
+  
   ngOnInit() {
     this.postsSubscription = this.postsService.postSubject.subscribe(
       (posts:Blog[]) => {
         this.posts = posts;
-    });
-    const category = this.route.snapshot.params['category'];
-    this.postsService.getPostsByCategory(category);
-    this.postsService.emitPosts();
+        const category = this.route.snapshot.params['category'];
+        this.postsService.getPostsByCategory(category);
+        console.log('category ' + category + ' - posts ' + this.posts)
+
+      }
+      );
+
+      
+
   }
 
   ngOnDestroy() {
