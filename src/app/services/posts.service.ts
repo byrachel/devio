@@ -6,21 +6,20 @@ import Datasnapshot = firebase.database.DataSnapshot;
 import { Router } from '@angular/router';
 import {Observable} from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class PostsService {
   // Je crée mon tableau d'articles
   posts: Blog[] = [];
-  // Je récupère un subject afin de créer le tableau
+  // Je récupère un post afin de créer le tableau
   postSubject = new Subject<Blog[]>();
-
-  constructor(private route:Router) {
-    this.getPosts();
-  }
 
   emitPosts() {
     this.postSubject.next(this.posts);
+  }
+
+  constructor(private route:Router) {
+    this.getPosts();
   }
 
   savePosts() {
@@ -36,16 +35,27 @@ export class PostsService {
     });
   }
 
-    getPostsByCategory(category:string) {
-      firebase.database().ref('/blog').orderByChild('category').equalTo(category).once("value").then(Datasnapshot => {
-        
-        Datasnapshot.forEach(child => {
-          const post = child.val();
-          post.id = child.key;
-        });
-      });
+  getSinglePost(id: number) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/blog/' + id).once('value').then(
+          (data: Datasnapshot) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
       }
+    );
+  }
 
+  getPostsByCategory(category:string) {
+    firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
+      this.posts = data.val() ? data.val() : [];
+      console.log(this.posts)
+
+    });
+  }
 
   createNewPost(newPost:Blog) {
     this.posts.push(newPost);

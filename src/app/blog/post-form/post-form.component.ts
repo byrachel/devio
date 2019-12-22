@@ -25,6 +25,7 @@ export class PostFormComponent implements OnInit {
   initForm() {
     this.postForm = this.formBuilder.group({
       title: ['', [Validators.required]],
+      resum: ['', [Validators.required]],
       content: ['', [Validators.required]],
       category: ['', [Validators.required]],
       link: ['', [Validators.required]]
@@ -35,8 +36,9 @@ export class PostFormComponent implements OnInit {
     const title = this.postForm.get('title').value;
     const content = this.postForm.get('content').value;
     const category = this.postForm.get('category').value;
+    const resum = this.postForm.get('resum').value;
     const link = this.postForm.get('link').value;
-    const newPost = new Blog(title, content, category, link);
+    const newPost = new Blog(title, content, category, resum, link);
     this.postsService.createNewPost(newPost);
     this.router.navigate(['/blog']);
   }

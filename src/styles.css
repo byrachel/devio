@@ -2,11 +2,12 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 .space {
-    margin: 50px 0;
+    margin: 5% 0;
 }
 
 .bold {
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .light {
@@ -36,10 +37,17 @@ h3 {
     text-transform: uppercase;
     font-weight: 700;
 }
+.title {
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
 
+.title:hover {
+    transform: scale(1.1);
+}
 
 .big-title {
-    font-size: 2.5em;
+    font-size: 2em;
     line-height: 1.8em;
 }
 
@@ -96,4 +104,8 @@ p {
 
 .card {
     border-color: #F8F0ED !important;
+}
+
+.pink-banner {
+    background-color: #F8F0ED;
 }

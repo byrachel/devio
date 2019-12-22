@@ -1,16 +1,20 @@
 <div class="space"></div>
-<div class="container mx-auto w-75">
-    <h2 class="text-center">Outils & services pour développeurs</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="text-center">Outils & services pour développeurs</h2>
 
-    <div class="card rounded-0 mb-3"
-    *ngFor="let post of posts; let i = index">
-        <h3 class="card-header title">{{ post.title }}</h3>
-        <div class="card-body">
-            <button class="card-title small" (click)="categoryList(post.category)">Catégorie: {{ post.category }}</button>
-            <p class="card-text">{{ post.content }}</p>
-            <p class="lien">En savoir plus : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
+            <div class="card rounded-0 mb-3"
+            *ngFor="let post of posts; let i = index">
+                <h3 class="card-header title" (click)="onClickPost(i)">{{ post.title }}</h3>
+                <div class="card-body">
+                    <button class="card-title small">Catégorie: {{ post.category }}</button>
+                    <p class="card-text">{{ post.resum }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <app-sidebar></app-sidebar>
         </div>
     </div>
-    <div class="space"></div>
-    <button class="btn btn-dark rounded-0" (click)="onNewPost()">Ajouter un outil</button>
 </div>

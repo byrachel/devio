@@ -14,15 +14,14 @@ export class AppComponent implements OnInit{
 
   constructor (private authService: AuthService) {
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBN9dQVrSM_m9Jil7BN5e_--WyJs6ldgQU",
-      authDomain: "http-client-demo-c59a6.firebaseapp.com",
-      databaseURL: "https://http-client-demo-c59a6.firebaseio.com",
-      projectId: "http-client-demo-c59a6",
-      storageBucket: "http-client-demo-c59a6.appspot.com",
-      messagingSenderId: "656084897783",
-      appId: "1:656084897783:web:fa95656fa7db83196a28f2",
-      measurementId: "G-QEEE9B846F"
+    var firebaseConfig = {
+      apiKey: "AIzaSyBOxxIul37COnLRwhW5TcEuVwrFOzQ3FUc",
+      authDomain: "devio-12a3e.firebaseapp.com",
+      databaseURL: "https://devio-12a3e.firebaseio.com",
+      projectId: "devio-12a3e",
+      storageBucket: "devio-12a3e.appspot.com",
+      messagingSenderId: "183025572234",
+      appId: "1:183025572234:web:3efd48e44a9e9182189073"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

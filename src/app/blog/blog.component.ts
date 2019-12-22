@@ -26,11 +26,11 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.postsService.emitPosts();
   }
 
-  onNewPost() {
-    this.router.navigate(['/blog', 'new']);
+  onClickPost(id: number) {
+    this.router.navigate(['/blog', 'view', id]);
   }
 
-  categoryList(category:string) {
+  categoryList(category: string) {
     this.router.navigate(['/blog', category]);
   }
 
