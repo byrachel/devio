@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Blog } from '../../models/Blog.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-category',
@@ -11,45 +10,40 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class CategoryComponent implements OnInit {
 
-  posts: Blog[];
-  postsSubscription: Subscription;
-<<<<<<< HEAD:src/app/blog/categorylist/categorylist.component.ts
-  constructor(private route: ActivatedRoute, private postsService: PostsService, private router: Router) {
-  }
-  
-=======
+  posts: Blog[] = [];
+  postsByCategory: Blog[] = [];
+  category: string = '';
+  id: number;
 
   constructor(private route: ActivatedRoute,
               private postsService: PostsService,
               private router: Router) { }
 
-
-
->>>>>>> 5b8d0c364814c32a0f3d65edca63822f36ef5a94:src/app/blog/category/category.component.ts
   ngOnInit() {
-    this.postsSubscription = this.postsService.postSubject.subscribe(
-      (posts:Blog[]) => {
-        this.posts = posts;
-<<<<<<< HEAD:src/app/blog/categorylist/categorylist.component.ts
-        const category = this.route.snapshot.params['category'];
-        this.postsService.getPostsByCategory(category);
-        console.log('category ' + category + ' - posts ' + this.posts)
 
-      }
-      );
+  let category = this.route.snapshot.params['category'];
+  this.postsService.postSubject.subscribe(
 
+    (posts:Blog[]) => {
       
-=======
-    });
-    const category = this.route.snapshot.params['category'];
-    this.postsService.getPostsByCategory(category);
->>>>>>> 5b8d0c364814c32a0f3d65edca63822f36ef5a94:src/app/blog/category/category.component.ts
+      for(let i=0; i<posts.length; i++) {
+      if(posts[i].category == category) {
+        this.postsByCategory.push(posts[i]);
+        this.category = category;
+        this.id = i;
+      }
+    }
 
+    });
+  this.postsService.emitPosts();
   }
 
+  onClickPost(id: number) {
+    this.router.navigate(['/blog', 'view', id]);
+  }
 
-  ngOnDestroy() {
-    this.postsSubscription.unsubscribe();
+  onBack() {
+    this.router.navigate(['/blog']);
   }
 
 }

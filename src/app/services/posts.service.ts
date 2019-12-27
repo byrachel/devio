@@ -4,7 +4,6 @@ import { Subject } from 'rxjs/Subject';
 import * as firebase from 'firebase';
 import Datasnapshot = firebase.database.DataSnapshot;
 import { Router } from '@angular/router';
-import {Observable} from "rxjs";
 
 @Injectable()
 
@@ -50,10 +49,9 @@ export class PostsService {
   }
 
   getPostsByCategory(category:string) {
-    firebase.database().ref('/blog').orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
-      this.posts = data.val() ? data.val() : [];
-      console.log(this.posts)
-
+    //firebase.database().ref('/blog' + category).orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
+      firebase.database().ref('/blog').once('value', (data: Datasnapshot) => {
+        this.posts = data.val() ? data.val() : [];
     });
   }
 

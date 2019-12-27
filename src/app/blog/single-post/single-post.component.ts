@@ -3,6 +3,7 @@ import { Blog } from '../../models/Blog.model';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 
+
 @Component({
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
@@ -17,17 +18,23 @@ export class SinglePostComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.post = new Blog('', '', '', '', '');
     const id = this.route.snapshot.params['id'];
+
     this.postsService.getSinglePost(+id).then(
       (post: Blog) => {
         this.post = post;
       }
     );
+
   }
 
   onBack() {
     this.router.navigate(['/blog']);
   }
+
+  onClickCategory(category: string) {
+    this.router.navigate(['/blog', category]);
+  }
+
 }

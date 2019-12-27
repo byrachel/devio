@@ -2,17 +2,21 @@
     <div class="space"></div>
     <div class="row">
         <div class="col-md-8">
-            <p class="small">Catégorie : {{ post.category }}</p>
             <br />
             <h2>{{ post.title }}</h2>
             <div class="divider"></div>
             <br />
+            <button (click)="onClickCategory(post.category)" class="small">Catégorie : {{ post.category }}</button>
+            <div class="space"></div>
             <p>{{ post.resum }}</p>
             <br />
             <p>{{ post.content }}</p>
+
             <p class="lien">Site officiel : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
             <div class="space"></div>
-            <button class="btn btn-dark rounded-0" (click)="onBack()">Retour</button>
+            <div class="text-right">
+                <button type="button" class="btn btn-light rounded-0 ml-2" (click)="onBack()">Retour</button>
+            </div>
         </div>
         <div class="col-md-4">
             <app-sidebar></app-sidebar>

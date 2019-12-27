@@ -30,7 +30,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.router.navigate(['/blog', 'view', id]);
   }
 
-  categoryList(category: string) {
+  onClickCategory(category: string) {
     this.router.navigate(['/blog', category]);
   }
 
