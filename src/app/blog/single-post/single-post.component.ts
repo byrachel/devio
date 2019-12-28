@@ -26,7 +26,6 @@ export class SinglePostComponent implements OnInit {
         this.post = post;
       }
     );
-
   }
 
   onBack() {

@@ -48,12 +48,11 @@ export class PostsService {
     );
   }
 
-  getPostsByCategory(category:string) {
-    //firebase.database().ref('/blog' + category).orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
-      firebase.database().ref('/blog').once('value', (data: Datasnapshot) => {
-        this.posts = data.val() ? data.val() : [];
-    });
-  }
+  // getPostsByCategory(category:string) {
+  //   firebase.database().ref('/blog' + category).orderByChild("category").equalTo(category).on("value", (data: Datasnapshot) => {
+  //       this.posts = data.val() ? data.val() : [];
+  //   });
+  // }
 
   createNewPost(newPost:Blog) {
     this.posts.push(newPost);

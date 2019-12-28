@@ -19,6 +19,7 @@ import { SinglePostComponent } from './blog/single-post/single-post.component';
 import { SidebarComponent } from './blog/sidebar/sidebar.component';
 import { CategoryComponent } from './blog/category/category.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { SearchComponent } from './blog/search/search.component';
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     SinglePostComponent,
     SidebarComponent,
     CategoryComponent,
-    SigninComponent
+    SigninComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

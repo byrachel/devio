@@ -4,13 +4,17 @@
         <div class="col-md-8">
             <h3>Catégorie : {{ category }}</h3>
             <div class="divider"></div>
-            <h2>Outils & services pour développeurs</h2>
+            <h2 class="small">Outils & services pour développeurs</h2>
             <div class="space"></div>
             <div class="card rounded-0 mb-3"
             *ngFor="let post of postsByCategory; let i = index">
-                <h3 class="card-header title" (click)="onClickPost(i)">{{ post.title }}</h3>
+                <h3 class="card-header uppercase">{{ post.title }}</h3>
                 <div class="card-body">
-                    <p class="card-text">{{ post.resum }}</p>
+                    <p class="card-text resum">{{ post.resum }}</p>
+                    <p class="card-text">{{ post.content }}</p>
+                    <div class="divider"></div>
+                    <div class="space"></div>
+                    <p class="lien uppercase">Site officiel : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
                 </div>
             </div>
             <div class="text-right">
