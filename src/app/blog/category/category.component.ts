@@ -12,8 +12,7 @@ export class CategoryComponent implements OnInit {
 
   posts: Blog[] = [];
   postsByCategory: Blog[] = [];
-  category: string = '';
-  
+  category: string = '';  
 
   constructor(private route: ActivatedRoute,
               private postsService: PostsService,

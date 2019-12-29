@@ -8,13 +8,18 @@
             <div class="space"></div>
             <div class="card rounded-0 mb-3"
             *ngFor="let post of postsByCategory; let i = index">
-                <h3 class="card-header uppercase">{{ post.title }}</h3>
-                <div class="card-body">
-                    <p class="card-text resum">{{ post.resum }}</p>
-                    <p class="card-text">{{ post.content }}</p>
-                    <div class="divider"></div>
-                    <div class="space"></div>
-                    <p class="lien uppercase">Site officiel : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
+                <a class="card-header title" data-toggle="collapse" href="#collapsePost-{{ i }}" role="button" aria-expanded="false" aria-controls="collapsePost">
+                <h3 class="uppercase">{{ post.title }}
+                <img src="assets/arrow.png" class="float-right center-block img-fluid arrow-icon">
+                </h3></a>
+                <div class="collapse" id="collapsePost-{{ i }}">
+                    <div class="card-body">
+                        <p class="card-text resum">{{ post.resum }}</p>
+                        <p class="card-text">{{ post.content }}</p>
+                        <div class="divider"></div>
+                        <div class="space"></div>
+                        <p class="lien uppercase">Site officiel : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
+                    </div>
                 </div>
             </div>
             <div class="text-right">

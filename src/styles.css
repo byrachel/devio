@@ -36,6 +36,14 @@ h3 {
     letter-spacing: 2px;
     font-weight: 700;
 }
+
+.card-header {
+    color: black;
+}
+.card-header, a:hover {
+    text-decoration: none;
+}
+
 .title {
     cursor: pointer;
     transition: all .1s ease-in-out;
