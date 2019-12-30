@@ -25,6 +25,22 @@ export class PostsService {
     firebase.database().ref('/blog').set(this.posts);
   }
 
+  // updatePost(post,index) {
+  //   this.posts[index] = post;
+  //   this.emitPosts;
+  // }
+
+  updatePost(id, newPost:Blog){
+    //post.title = post.title;
+    console.log(id + newPost)
+    firebase.database().ref('/blog/' +id).update(newPost).catch(
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+
   getPosts() {
     // 'value' permet à Firebase de faire une maj sur tous les appareils connectés dès qu'on fait une modification.
     // La fonction callback reçoit DataSnapshot qui contient plusieurs méthodes dont val() qui retourne la valeur des données.
@@ -59,5 +75,5 @@ export class PostsService {
     this.savePosts();
     this.emitPosts();
   }
-  
+
 }

@@ -25,8 +25,8 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/new', canActivate: [AuthGuardService], component: PostFormComponent },
+  { path: 'blog/new/:id', canActivate: [AuthGuardService], component: PostFormComponent },
   { path: 'blog/view/:id', component: SinglePostComponent },
-  { path: 'blog/view/:title', component: SinglePostComponent },
   { path: 'blog/:category', component: CategoryComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '' }

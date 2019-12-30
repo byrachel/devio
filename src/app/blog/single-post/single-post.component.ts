@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Blog } from '../../models/Blog.model';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { PostsService } from '../../services/posts.service';
 export class SinglePostComponent implements OnInit {
 
   post: Blog;
+  isAuth: boolean;
+  idToUpdate:number;
 
   constructor(private postsService: PostsService,
               private router: Router,
@@ -24,6 +27,18 @@ export class SinglePostComponent implements OnInit {
     this.postsService.getSinglePost(+id).then(
       (post: Blog) => {
         this.post = post;
+        this.idToUpdate = id;
+      }
+    );
+
+    firebase.auth().onAuthStateChanged(
+      (user) => {
+        if(user) {
+          this.isAuth = true;
+        }
+        else {
+          this.isAuth = false;
+        }
       }
     );
   }
@@ -35,5 +50,15 @@ export class SinglePostComponent implements OnInit {
   onClickCategory(category: string) {
     this.router.navigate(['/blog', category]);
   }
+
+  onEditPost(id:number, post: Blog) {
+    if(this.isAuth) {
+      let id = this.idToUpdate;
+      this.router.navigate(['/blog', 'new', id]);
+      }
+      else {
+        this.router.navigate(['/signup']);
+      }
+    }
 
 }

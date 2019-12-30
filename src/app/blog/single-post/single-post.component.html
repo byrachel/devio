@@ -2,18 +2,20 @@
     <div class="space"></div>
     <div class="row">
         <div class="col-md-8">
-            <br />
+            <div class="mb-3">
             <h2 class="bold uppercase">{{ post.title }}</h2>
-            <p class="resum">{{ post.resum }}</p>
             <div class="divider"></div>
+            </div>
+            <p class="resum"><span class="bold">En bref: </span>{{ post.resum }}</p>
             <br />
-            <p><span class="bold">Description: </span>{{ post.content }}</p>
+            <p>{{ post.content }}</p>
             <div class="space"></div>
+            <button class="card-title small" (click)="onClickCategory(post.category)">Catégorie: {{ post.category }}</button>
             <p class="lien uppercase">Site officiel : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
-            <button (click)="onClickCategory(post.category)" class="small">Catégorie : {{ post.category }}</button>
             <div class="space"></div>
             <div class="text-right">
-                <button type="button" class="btn btn-light rounded-0 ml-2" (click)="onBack()">Retour</button>
+                <button type="button" (click)="onEditPost(id)" class="btn btn-light rounded-0 ml-2">Modifier ce post</button>
+                <button type="button" class="btn btn-light rounded-0 ml-2" (click)="onBack()">Retour à l'annuaire</button>
             </div>
         </div>
         <div class="col-md-4">
