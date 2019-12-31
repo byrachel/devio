@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { PostsService } from '../services/posts.service';
 
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -11,7 +12,7 @@ import { PostsService } from '../services/posts.service';
 })
 export class BlogComponent implements OnInit, OnDestroy {
 
-  posts: Blog[];
+  posts: Blog[] = [];
   postsSubscription: Subscription;
 
   constructor(private router:Router,

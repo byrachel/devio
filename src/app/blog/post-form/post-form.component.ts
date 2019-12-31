@@ -1,10 +1,9 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 import { Blog } from '../../models/Blog.model';
-import { isNumber } from 'util';
 
 @Component({
   selector: 'app-post-form',
@@ -35,10 +34,7 @@ export class PostFormComponent implements OnInit {
     this.postsService.emitPosts();
 
     const id = this.route.snapshot.params['id'];
-    // this.post = new Blog('', '', '', '', '');
-
     this.indexToUpdate = id;
-    console.log('ID: ' + id + ' indexToUpdate: ' + this.indexToUpdate);
 
     this.postsService.getSinglePost(+id).then(
       (post: Blog) => {
@@ -50,8 +46,6 @@ export class PostFormComponent implements OnInit {
         this.postForm.get('link').setValue(this.post.link);
       }
     );
-
-
   }
 
 
@@ -77,7 +71,6 @@ export class PostFormComponent implements OnInit {
     const newPost: Blog = this.postForm.value;
 
     if(this.indexToUpdate >= 0) {
-      // this.onEditPost(this.post);
       this.postsService.updatePost(this.indexToUpdate, newPost);
     } else {
       this.postsService.createNewPost(newPost);
@@ -85,27 +78,7 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  // onEditPost(post: Blog) {
-
-  //     this.postForm.get('title').setValue(this.post.title);
-  //     this.postForm.get('content').setValue(this.post.content);
-  //     this.postForm.get('category').setValue(this.post.category);
-  //     this.postForm.get('resum').setValue(this.post.resum);
-  //     this.postForm.get('link').setValue(this.post.link);
-  //   // récupérer l'index du post pour editer le bon élément
-  //     const index = this.posts.findIndex(
-  //       (postElt) => {
-  //         if(postElt === post) {
-  //           return true;
-  //         }
-  //       }
-  //     );
-  //     this.indexToUpdate = index;
-  //   }
-
     resetForm() {
       this.postForm.reset();
     }
-
   }
-

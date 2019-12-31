@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
 
   posts: Blog[] = [];
   postsByCategory: Blog[] = [];
-  category: string = '';  
+  category: string = '';
 
   constructor(private route: ActivatedRoute,
               private postsService: PostsService,
@@ -23,7 +23,7 @@ export class CategoryComponent implements OnInit {
   let category = this.route.snapshot.params['category'];
   this.postsService.postSubject.subscribe(
     (posts:Blog[]) => {
-      posts.forEach((post) => {
+      posts.map((post) => {
         if(post.category === category) {
         this.postsByCategory.push(post);
         this.category = category;
@@ -34,11 +34,6 @@ export class CategoryComponent implements OnInit {
   })
   this.postsService.emitPosts();
 }
-
-  onClickPost(id:number) {
-
-    this.router.navigate(['/blog', 'view', id]);
-  } 
 
   onBack() {
     this.router.navigate(['/blog']);

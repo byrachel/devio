@@ -25,21 +25,13 @@ export class PostsService {
     firebase.database().ref('/blog').set(this.posts);
   }
 
-  // updatePost(post,index) {
-  //   this.posts[index] = post;
-  //   this.emitPosts;
-  // }
-
   updatePost(id, newPost:Blog){
-    //post.title = post.title;
-    console.log(id + newPost)
     firebase.database().ref('/blog/' +id).update(newPost).catch(
       (error) => {
         console.log(error);
       }
     );
   }
-
 
   getPosts() {
     // 'value' permet à Firebase de faire une maj sur tous les appareils connectés dès qu'on fait une modification.
@@ -54,6 +46,20 @@ export class PostsService {
     return new Promise(
       (resolve, reject) => {
         firebase.database().ref('/blog/' + id).once('value').then(
+          (data: Datasnapshot) => {
+            resolve(data.val());
+          }, (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
+  getSinglePostFromTitle(title: string) {
+    return new Promise(
+      (resolve, reject) => {
+        firebase.database().ref('/blog/' + title).once('value').then(
           (data: Datasnapshot) => {
             resolve(data.val());
           }, (error) => {
