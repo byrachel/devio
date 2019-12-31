@@ -51,7 +51,7 @@ export class SinglePostComponent implements OnInit {
     this.router.navigate(['/blog', category]);
   }
 
-  onEditPost(id:number, post: Blog) {
+  onEditPost(post) {
     if(this.isAuth) {
       let id = this.idToUpdate;
       this.router.navigate(['/blog', 'new', id]);

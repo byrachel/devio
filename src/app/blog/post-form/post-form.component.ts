@@ -35,7 +35,7 @@ export class PostFormComponent implements OnInit {
 
     const id = this.route.snapshot.params['id'];
     this.indexToUpdate = id;
-
+    if(id >= 0) {
     this.postsService.getSinglePost(+id).then(
       (post: Blog) => {
         this.post = post;
@@ -46,6 +46,9 @@ export class PostFormComponent implements OnInit {
         this.postForm.get('link').setValue(this.post.link);
       }
     );
+  } else {
+    console.log('mode creation')
+  }
   }
 
 
@@ -72,6 +75,7 @@ export class PostFormComponent implements OnInit {
 
     if(this.indexToUpdate >= 0) {
       this.postsService.updatePost(this.indexToUpdate, newPost);
+      this.router.navigate(['/blog', 'view', this.indexToUpdate]);
     } else {
       this.postsService.createNewPost(newPost);
       this.router.navigate(['/blog']);

@@ -14,7 +14,7 @@
             <p class="lien uppercase">Site officiel : <a class="card-text lien" routerLink=[post.link]>{{ post.link }}</a></p>
             <div class="space"></div>
             <div class="text-right">
-                <button *ngIf="isAuth" type="button" (click)="onEditPost(id)" class="btn btn-light rounded-0 ml-2">Modifier ce post</button>
+                <button *ngIf="isAuth" type="button" (click)="onEditPost(post)" class="btn btn-light rounded-0 ml-2">Modifier ce post</button>
                 <button type="button" class="btn btn-light rounded-0 ml-2" (click)="onBack()">Retour à l'annuaire</button>
             </div>
         </div>
